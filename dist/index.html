@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+      integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <title>Trace calorie</title>
+  </head>
+  <body>
+    <div id="showcase">
+      <div id="navbar">
+        <div id="navbar-content" class="container">
+          <h1 id="title">TraceCalorie</h1>
+          <button class="btn bg-light">Clear All</button>
+        </div>
+      </div>
+      <div class="item-container">
+        <div class="card">
+          <h2>Add Meal / Food</h2>
+          <div class="box">
+            <div class="input-container">
+              <input
+                type="text"
+                id="meal-input"
+                class="input-animation"
+                required
+              />
+              <label for="meal-input" id="meal-label" class="label-animation">
+                Meal
+              </label>
+            </div>
+            <div class="input-container">
+              <input
+                type="number"
+                id="colarie-input"
+                class="input-animation"
+                required
+              />
+              <label
+                for="colarie-input"
+                id="colarie-label"
+                class="label-animation"
+              >
+                Calorie
+              </label>
+            </div>
+          </div>
+          <div id="buttons">
+            <button class="btn bg-primary" id="add-meal">
+              <i class="fas fa-plus"></i> Add Meal
+            </button>
+            <div>
+              <button class="btn bg-light">
+                <i class="fas fa-arrow-circle-left"></i> Back
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 id="total-title">Total Calories: 0</h2>
+          <ul id="list">
+            <li>
+              <div class="li-content">
+                <span class="li-meal">Cookie</span>:
+                <span class="li-calorie">100 Calories</span>
+              </div>
+              <a href="#"><i class="fas fa-pencil-alt color-secondary"></i></a>
+            </li>
+            <li>
+              <div class="li-content">
+                <span class="li-meal">Steak Dinner</span>:
+                <span class="li-calorie">500 Calories</span>
+              </div>
+              <a href="#"><i class="fas fa-pencil-alt color-secondary"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

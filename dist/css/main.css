@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap");
+.container {
+  max-width: 700px;
+  margin: 0 auto; }
+
+.item-container {
+  max-width: 600px;
+  margin: 0 auto; }
+
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem; }
+
+.bg-light {
+  background: #868585; }
+
+.bg-primary {
+  background: #940b56; }
+
+.color-secondary {
+  color: #ec650b; }
+
+.box {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem; }
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 1rem; }
+  .input-container .input-animation {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0 0.5rem; }
+    .input-container .input-animation:focus {
+      outline: none;
+      border-bottom: 1.2px solid #940b56; }
+  .input-container .label-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 1rem;
+    transition: all 0.3s ease; }
+  .input-container .input-animation:focus + .label-animation,
+  .input-container .input-animation:valid + .label-animation {
+    transform: translateY(-20px);
+    color: #940b56;
+    font-size: 0.8rem; }
+
+.card {
+  background: rgba(255, 255, 255, 0.87);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #333; }
+
+#showcase {
+  background: rgba(56, 55, 55, 0.473);
+  height: 100vh;
+  position: relative; }
+  #showcase::before {
+    content: "";
+    background: url("../img/background2.jpg") no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1; }
+  #showcase #navbar {
+    background: rgba(34, 34, 34, 0.616);
+    padding: 1rem 1.5rem;
+    color: white; }
+    #showcase #navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      #showcase #navbar-content #title {
+        font-family: "Source Code Pro", monospace;
+        font-weight: normal; }
+  #showcase #buttons {
+    display: flex;
+    justify-content: space-between; }
+  #showcase #total-title {
+    text-align: center;
+    margin-bottom: 1rem; }
+  #showcase #list {
+    list-style: none; }
+    #showcase #list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border: 1px solid #868585;
+      border-radius: 5px; }
+      #showcase #list li .li-meal {
+        font-weight: bold; }
+      #showcase #list li .li-calorie {
+        font-style: italic; }
