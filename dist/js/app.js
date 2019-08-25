@@ -63,6 +63,17 @@ const ItemCtrl = (function() {
         }
       });
       return found;
+    },
+    updateItem: function(name, calorie) {
+      let found;
+      data.items.forEach(item => {
+        if (item.id === data.currentItem.id) {
+          item.name = name;
+          item.calorie = calorie;
+          found = item;
+        }
+      });
+      return found;
     }
   };
 })();
@@ -71,6 +82,7 @@ const ItemCtrl = (function() {
 const UICtrl = (function() {
   const UISelectors = {
     itemList: "#list",
+    lis: "#list li",
     addBtn: "#add-meal",
     updateBtn: "#update-meal",
     deleteBtn: "#delete-meal",
@@ -99,7 +111,7 @@ const UICtrl = (function() {
     getInputs: function() {
       return {
         meal: document.querySelector(UISelectors.mealInput).value,
-        calorie: document.querySelector(UISelectors.calorieInput).value
+        calorie: Number(document.querySelector(UISelectors.calorieInput).value)
       };
     },
     getSelectors: function() {
@@ -131,6 +143,9 @@ const UICtrl = (function() {
       document.querySelector(UISelectors.backBtn).style.display = "none";
       document.querySelector(UISelectors.deleteBtn).style.display = "none";
       document.querySelector(UISelectors.updateBtn).style.display = "none";
+
+      document.querySelector(UISelectors.mealInput).value = "";
+      document.querySelector(UISelectors.calorieInput).value = "";
     },
     addItemtoForm: function() {
       document.querySelector(
@@ -146,6 +161,22 @@ const UICtrl = (function() {
       document.querySelector(UISelectors.backBtn).style.display = "inline";
       document.querySelector(UISelectors.deleteBtn).style.display = "inline";
       document.querySelector(UISelectors.updateBtn).style.display = "inline";
+    },
+    updateList: function(item) {
+      let lis = document.querySelectorAll(UISelectors.lis);
+      lis = Array.from(lis);
+
+      lis.forEach(li => {
+        if (li.id === `item-${item.id}`) {
+          document.querySelector(
+            `#${li.id}`
+          ).innerHTML = `<div class="li-content">
+          <span class="li-meal">${item.name}</span>:
+          <span class="li-calorie">${item.calorie} Calories</span>
+        </div>
+        <a href="#"><i class="fas fa-pencil-alt color-secondary edit"></i></a>`;
+        }
+      });
     }
   };
 })();
@@ -161,6 +192,10 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     document
       .querySelector(selectors.itemList)
       .addEventListener("click", editMeal);
+
+    document
+      .querySelector(selectors.updateBtn)
+      .addEventListener("click", updateMeal);
   };
 
   const itemAddSubmit = function() {
@@ -186,6 +221,16 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
 
       UICtrl.addItemtoForm();
     }
+  };
+
+  const updateMeal = function() {
+    const inputs = UICtrl.getInputs();
+    const item = ItemCtrl.updateItem(inputs.meal, inputs.calorie);
+
+    UICtrl.updateList(item);
+    UICtrl.updateTotalCalories();
+
+    UICtrl.readyToGetState();
   };
   return {
     init: function() {
