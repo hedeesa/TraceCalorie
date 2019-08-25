@@ -74,6 +74,16 @@ const ItemCtrl = (function() {
         }
       });
       return found;
+    },
+    deleteItem: function(id) {
+      const ids = data.items.map(function(item) {
+        return item.id;
+      });
+      const index = ids.indexOf(id);
+      data.items.splice(index, 1);
+    },
+    clearItems: function() {
+      data.items = [];
     }
   };
 })();
@@ -88,6 +98,7 @@ const UICtrl = (function() {
     deleteBtn: "#delete-meal",
     backBtn: "#back",
     editBtn: ".edit",
+    clearBtn: "#clearBtn",
     mealInput: "#meal-input",
     calorieInput: "#colarie-input",
     totalCalorie: "#total-calorie"
@@ -177,6 +188,14 @@ const UICtrl = (function() {
         <a href="#"><i class="fas fa-pencil-alt color-secondary edit"></i></a>`;
         }
       });
+    },
+    deleteFromList: function(id) {
+      const liID = `item-${id}`;
+
+      document.getElementById(liID).remove();
+    },
+    clearList: function() {
+      document.querySelector(UISelectors.itemList).innerHTML = "";
     }
   };
 })();
@@ -196,6 +215,18 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     document
       .querySelector(selectors.updateBtn)
       .addEventListener("click", updateMeal);
+
+    document
+      .querySelector(selectors.deleteBtn)
+      .addEventListener("click", deleteMeal);
+
+    document
+      .querySelector(selectors.backBtn)
+      .addEventListener("click", UICtrl.readyToGetState);
+
+    document
+      .querySelector(selectors.clearBtn)
+      .addEventListener("click", clearAll);
   };
 
   const itemAddSubmit = function() {
@@ -228,6 +259,26 @@ const AppCtrl = (function(ItemCtrl, UICtrl) {
     const item = ItemCtrl.updateItem(inputs.meal, inputs.calorie);
 
     UICtrl.updateList(item);
+    UICtrl.updateTotalCalories();
+
+    UICtrl.readyToGetState();
+  };
+  const deleteMeal = function() {
+    const item = ItemCtrl.getCurrentItem();
+
+    ItemCtrl.deleteItem(item.id);
+
+    UICtrl.deleteFromList(item.id);
+
+    UICtrl.updateTotalCalories();
+
+    UICtrl.readyToGetState();
+  };
+  const clearAll = function() {
+    ItemCtrl.clearItems();
+
+    UICtrl.clearList();
+
     UICtrl.updateTotalCalories();
 
     UICtrl.readyToGetState();
