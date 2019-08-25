@@ -44,6 +44,11 @@ body {
   #buttons {
     display: flex;
     justify-content: space-between;
+    #left-btn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0.5rem;
+    }
   }
   #total-title {
     text-align: center;
@@ -65,6 +70,36 @@ body {
       }
       .li-calorie {
         font-style: italic;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  #showcase {
+    #buttons {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 0.3rem;
+      #left-btn {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 0.3rem;
+      }
+    }
+    #navbar {
+      padding: 1rem;
+      #title {
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  @media (max-width: 340px) {
+    #showcase #navbar {
+      #title {
+        font-size: 1.3rem;
       }
     }
   }

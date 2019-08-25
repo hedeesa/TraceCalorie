@@ -22,13 +22,13 @@
   background: #940b56; }
 
 .bg-secondary {
-  background: #ec650b; }
+  background: #e7782d; }
 
 .bg-third {
-  background: #0a803b; }
+  background: #138342; }
 
 .color-secondary {
-  color: #ec650b; }
+  color: #e7782d; }
 
 .box {
   margin-top: 1rem;
@@ -106,6 +106,10 @@ body {
   #showcase #buttons {
     display: flex;
     justify-content: space-between; }
+    #showcase #buttons #left-btn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 0.5rem; }
   #showcase #total-title {
     text-align: center;
     margin-bottom: 1rem; }
@@ -123,3 +127,22 @@ body {
         font-weight: bold; }
       #showcase #list li .li-calorie {
         font-style: italic; }
+
+@media (max-width: 420px) {
+  #showcase #buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.3rem; }
+    #showcase #buttons #left-btn {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 0.3rem; }
+  #showcase #navbar {
+    padding: 1rem; }
+    #showcase #navbar #title {
+      font-size: 1.7rem;
+      font-weight: bold; } }
+
+@media (max-width: 420px) and (max-width: 340px) {
+  #showcase #navbar #title {
+    font-size: 1.3rem; } }
